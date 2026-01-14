@@ -1,6 +1,6 @@
-# iTunes Media Search App
+# 🎵 iTunes Media Search App
 
-This is a Capstone Project web application that allows users to search for various media types (music, movies, audiobooks, etc.) using the official [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/Introduction/Introduction.html). The app also allows users to manage a favourites list locally while they use the application.
+A full-stack web application that allows users to search, explore, and manage media content from the iTunes Store. The app integrates the iTunes Search API, providing a clean and responsive interface for browsing music, movies, podcasts, and more, with user authentication and favourites management.
 
 ---
 
@@ -22,12 +22,20 @@ This is a Capstone Project web application that allows users to search for vario
 
 ## 🧰 Technologies Used
 
+### Front-end
+
 - React
+- JavaScript (ES6+)
+- HTML5 & CSS3
+- Fetch API
+- Axios (Calls Express API)
+
+### Backend
 - Node.js
-- Express
-- JWT (jsonwebtoken)
-- Axios
-- iTunes Search API
+- Express.js
+- JSON Web Tokens (JWT)
+- Middleware for authorization and validation
+- Axios (Calls iTunes Search API)
 
 ---
 
@@ -48,7 +56,7 @@ This is a Capstone Project web application that allows users to search for vario
 - npm install
 
 # For the server (Node/Express back-end)
-- cd ../server
+- cd server
 - npm instal
 
 3. Create .env File in server
@@ -61,5 +69,5 @@ This is a Capstone Project web application that allows users to search for vario
 - node index.js
 
 # In a new terminal, start the client
-- cd ../client
+- cd client
 - npm start
