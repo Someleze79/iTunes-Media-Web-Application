@@ -1,4 +1,4 @@
-# 🎵 iTunes Media Search App
+# 🎵 iTunes Media Web Application
 
 A full-stack web application that allows users to search, explore, and manage media content from the iTunes Store. The app integrates the iTunes Search API, providing a clean and responsive interface for browsing music, movies, podcasts, and more, with user authentication and favourites management.
 
@@ -46,8 +46,8 @@ A full-stack web application that allows users to search, explore, and manage me
 
 ```bash
 1. Clone or Download the Project
-- git clone https://github.com/your-username/itunes-search-app.git
-- cd itunes-search-app
+- git clone https://github.com/your-username/iTunes-Media-Web-Application.git
+- cd iTunes-Media-Web-Application
 
 2. Install Dependencies
 
