@@ -4,7 +4,7 @@ This is a Capstone Project web application that allows users to search for vario
 
 ---
 
-## Features
+## 🚀 Features
 
 ### Front-end (React)
 - Built with React for a responsive and interactive user experience.
@@ -20,7 +20,7 @@ This is a Capstone Project web application that allows users to search for vario
 
 ---
 
-## Technologies Used
+## 🧰 Technologies Used
 
 - React
 - Node.js
@@ -31,36 +31,35 @@ This is a Capstone Project web application that allows users to search for vario
 
 ---
 
-## How to Install and Run the App Locally
+## 🛠️ How to Install and Run the App Locally
 
 ### Prerequisites
 - Node.js and npm installed on your local machine.
 
 ```bash
-### 1. Clone or Download the Project
-git clone https://github.com/your-username/itunes-search-app.git
-cd itunes-search-app
+1. Clone or Download the Project
+- git clone https://github.com/your-username/itunes-search-app.git
+- cd itunes-search-app
 
-### 2. Install Dependencies
+2. Install Dependencies
 
 # For the client (React front-end)
-cd client
-npm install
+- cd client
+- npm install
 
 # For the server (Node/Express back-end)
-cd ../server
-npm instal
+- cd ../server
+- npm instal
 
-### 3. Create .env File in server
+3. Create .env File in server
+- JWT_SECRET=your_jwt_secret_key
 
-JWT_SECRET=your_jwt_secret_key
-
-### 4. Start the Application
+4. Start the Application
 
 # Start the server
-cd server
-node index.js
+- cd server
+- node index.js
 
 # In a new terminal, start the client
-cd ../client
-npm start
+- cd ../client
+- npm start
