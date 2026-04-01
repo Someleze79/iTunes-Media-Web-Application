@@ -1,10 +1,10 @@
-# iTunes Media Search App
+# 🎵 iTunes Media Web Application
 
-This is a Capstone Project web application that allows users to search for various media types (music, movies, audiobooks, etc.) using the official [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/Introduction/Introduction.html). The app also allows users to manage a favourites list locally while they use the application.
+A full-stack web application that allows users to search, explore, and manage media content from the iTunes Store. The app integrates the iTunes Search API, providing a clean and responsive interface for browsing music, movies, podcasts, and more, with user authentication and favourites management.
 
 ---
 
-## Features
+## 🚀 Features
 
 ### Front-end (React)
 - Built with React for a responsive and interactive user experience.
@@ -20,47 +20,54 @@ This is a Capstone Project web application that allows users to search for vario
 
 ---
 
-## Technologies Used
+## 🧰 Technologies Used
+
+### Front-end
 
 - React
+- JavaScript (ES6+)
+- HTML5 & CSS3
+- Fetch API
+- Axios (Calls Express API)
+
+### Backend
 - Node.js
-- Express
-- JWT (jsonwebtoken)
-- Axios
-- iTunes Search API
+- Express.js
+- JSON Web Tokens (JWT)
+- Middleware for authorization and validation
+- Axios (Calls iTunes Search API)
 
 ---
 
-## How to Install and Run the App Locally
+## 🛠️ How to Install and Run the App Locally
 
 ### Prerequisites
 - Node.js and npm installed on your local machine.
 
-### 1. Clone or Download the Project
 ```bash
-git clone https://github.com/your-username/itunes-search-app.git
-cd itunes-search-app
+1. Clone or Download the Project
+- git clone https://github.com/your-username/iTunes-Media-Web-Application.git
+- cd iTunes-Media-Web-Application
 
-### 2. Install Dependencies
+2. Install Dependencies
 
 # For the client (React front-end)
-cd client
-npm install
+- cd client
+- npm install
 
 # For the server (Node/Express back-end)
-cd ../server
-npm instal
+- cd server
+- npm instal
 
-### 3. Create .env File in server
+3. Create .env File in server
+- JWT_SECRET=your_jwt_secret_key
 
-JWT_SECRET=your_jwt_secret_key
-
-### 4. Start the Application
+4. Start the Application
 
 # Start the server
-cd server
-node index.js
+- cd server
+- node index.js
 
 # In a new terminal, start the client
-cd ../client
-npm start
+- cd client
+- npm start
