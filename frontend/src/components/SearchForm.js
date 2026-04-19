@@ -1,67 +1,102 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// SearchForm component accepts setResults from parent App component
+/*
+===========================================================
+SearchForm Component
+===========================================================
+
+Purpose:
+- Allows user to search iTunes media
+- Fetches JWT token from backend
+- Sends authenticated requests to protected API routes
+===========================================================
+*/
+
 const SearchForm = ({ setResults }) => {
-  // State to store user's search input
+  // Store user input (search term)
   const [searchTerm, setSearchTerm] = useState('');
 
-  // State to store selected media type (e.g., music, movie, etc.)
+  // Store selected media type
   const [mediaType, setMediaType] = useState('all');
 
-  // useEffect runs once on component mount to fetch JWT token from backend
+  /*
+  ===========================================================
+  Fetch JWT Token on Component Mount
+  ===========================================================
+
+  - Runs once when component loads
+  - Requests token from backend
+  - Stores token in localStorage for future API requests
+  */
   useEffect(() => {
     const getToken = async () => {
       try {
-        // Request a JWT token from the backend
-        const res = await axios.get('http://localhost:5000/api/token');
+        const res = await axios.get('/api/token'); // ✅ FIXED (no localhost)
 
-        // Store the token in localStorage for use in API requests
         localStorage.setItem('appToken', res.data.token);
       } catch (err) {
-        console.error('Failed to fetch token:', err);
+        console.error('Failed to fetch token:', err.message);
       }
     };
 
-    // Call the function to get the token
     getToken();
   }, []);
 
-  // Function that handles performing a search request
+  /*
+  ===========================================================
+  Handle Search Request
+  ===========================================================
+
+  - Sends authenticated request to backend
+  - Includes JWT token in Authorization header
+  - Passes search results to parent component
+  */
   const handleSearch = async () => {
     try {
-      // Retrieve the token from localStorage
       const token = localStorage.getItem('appToken');
 
-      // Make a GET request to the backend API to search iTunes
-      const response = await axios.get('http://localhost:5000/api/search', {
+      // Basic safety check
+      if (!token) {
+        console.warn('No token found. Requesting new token...');
+        return;
+      }
+
+      const response = await axios.get('/api/search', {
         headers: {
-          Authorization: `Bearer ${token}` // Send token in headers
+          Authorization: `Bearer ${token}` // Send JWT token
         },
         params: {
-          q: searchTerm, // Send the search term
-          media: mediaType !== 'all' ? mediaType : undefined // Conditionally send media type
+          q: searchTerm,
+          media: mediaType !== 'all' ? mediaType : undefined
         }
       });
 
-      // Pass the results back up to the App component via the setResults prop
+      // Send results to parent component
       setResults(response.data);
+
     } catch (error) {
-      console.error('Search error:', error.response?.data || error.message);
+      console.error(
+        'Search error:',
+        error.response?.data || error.message
+      );
     }
   };
 
   return (
     <div>
-      {/* Input for user to type search terms */}
+      {/* Search Input */}
       <input
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search media"
       />
 
-      {/* Dropdown for selecting media type */}
-      <select value={mediaType} onChange={(e) => setMediaType(e.target.value)}>
+      {/* Media Type Dropdown */}
+      <select
+        value={mediaType}
+        onChange={(e) => setMediaType(e.target.value)}
+      >
         <option value="all">All</option>
         <option value="music">Music</option>
         <option value="movie">Movie</option>
@@ -74,10 +109,12 @@ const SearchForm = ({ setResults }) => {
         <option value="ebook">eBook</option>
       </select>
 
-      {/* Button to trigger the search */}
-      <button onClick={handleSearch}>Search</button>
+      {/* Search Button */}
+      <button onClick={handleSearch}>
+        Search
+      </button>
     </div>
   );
 };
 
-export default SearchForm; // Export the component so it can be used in App
+export default SearchForm;
