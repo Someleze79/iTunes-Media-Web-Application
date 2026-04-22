@@ -1,78 +1,67 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// SearchForm component accepts setResults from parent App component
 const SearchForm = ({ setResults }) => {
+  // State to store user's search input
   const [searchTerm, setSearchTerm] = useState('');
+
+  // State to store selected media type (e.g., music, movie, etc.)
   const [mediaType, setMediaType] = useState('all');
 
-  // Fetch token on load
+  // useEffect runs once on component mount to fetch JWT token from backend
   useEffect(() => {
     const getToken = async () => {
       try {
-        const res = await axios.get('/api/token');
+        // Request a JWT token from the backend
+        const res = await axios.get('http://localhost:5000/api/token');
+
+        // Store the token in localStorage for use in API requests
         localStorage.setItem('appToken', res.data.token);
       } catch (err) {
-        console.error('Failed to fetch token:', err.message);
+        console.error('Failed to fetch token:', err);
       }
     };
 
+    // Call the function to get the token
     getToken();
   }, []);
 
-  // ✅ MUST BE INSIDE COMPONENT
+  // Function that handles performing a search request
   const handleSearch = async () => {
     try {
-      if (!searchTerm.trim()) {
-        console.warn('Search term is empty');
-        return;
-      }
+      // Retrieve the token from localStorage
+      const token = localStorage.getItem('appToken');
 
-      let token = localStorage.getItem('appToken');
-
-      if (!token) {
-        const res = await axios.get('/api/token');
-        token = res.data.token;
-        localStorage.setItem('appToken', token);
-      }
-
-      const response = await axios.get('/api/search', {
+      // Make a GET request to the backend API to search iTunes
+      const response = await axios.get('http://localhost:5000/api/search', {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}` // Send token in headers
         },
         params: {
-          q: searchTerm,
-          media: mediaType !== 'all' ? mediaType : undefined
+          q: searchTerm, // Send the search term
+          media: mediaType !== 'all' ? mediaType : undefined // Conditionally send media type
         }
       });
 
-      if (Array.isArray(response.data)) {
-        setResults(response.data);
-      } else {
-        console.error('Unexpected API response:', response.data);
-        setResults([]);
-      }
-
+      // Pass the results back up to the App component via the setResults prop
+      setResults(response.data);
     } catch (error) {
-      console.error(
-        'Search error:',
-        error.response?.data || error.message
-      );
-      setResults([]);
+      console.error('Search error:', error.response?.data || error.message);
     }
   };
 
   return (
     <div>
+      {/* Input for user to type search terms */}
       <input
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search media"
       />
 
-      <select
-        value={mediaType}
-        onChange={(e) => setMediaType(e.target.value)}
-      >
+      {/* Dropdown for selecting media type */}
+      <select value={mediaType} onChange={(e) => setMediaType(e.target.value)}>
         <option value="all">All</option>
         <option value="music">Music</option>
         <option value="movie">Movie</option>
@@ -85,11 +74,10 @@ const SearchForm = ({ setResults }) => {
         <option value="ebook">eBook</option>
       </select>
 
-      <button onClick={handleSearch}>
-        Search
-      </button>
+      {/* Button to trigger the search */}
+      <button onClick={handleSearch}>Search</button>
     </div>
   );
 };
 
-export default SearchForm;
+export default SearchForm; // Export the component so it can be used in App
