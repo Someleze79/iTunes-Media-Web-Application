@@ -34,7 +34,7 @@ const SearchForm = ({ setResults }) => {
       const token = localStorage.getItem('appToken');
 
       // Make a GET request to the backend API to search iTunes
-      const response = await axios.get('http://localhost:5000/api/search', {
+      const response = await axios.get('/api/search', {
         headers: {
           Authorization: `Bearer ${token}` // Send token in headers
         },
