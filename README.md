@@ -71,7 +71,7 @@ npm start
 cd frontend
 npm run build
 - Then move the build folder into the backend
-
+```
 ---
 
 ## 🌍 Deployment
