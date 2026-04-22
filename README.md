@@ -78,20 +78,20 @@ npm run build
 - The application is deployed on Render as a single full-stack service.
 
 ### Key Deployment Notes:
-● Frontend and backend are served from the same server
-● API routes:
-  ○ /api/token
-  ○ /api/search
-● React app is served using Express static middleware
+- Frontend and backend are served from the same server
+- API routes:
+  * /api/token
+  * /api/search
+- React app is served using Express static middleware
 
 ---
 
 ## 🧠 Challenges & Learnings
-● Handling CORS issues in production
-● Understanding the difference between localhost vs deployed environments
-● Managing React production builds
-● Debugging API communication between frontend and backend
-● Implementing JWT authentication
+- Handling CORS issues in production
+- Understanding the difference between localhost vs deployed environments
+- Managing React production builds
+- Debugging API communication between frontend and backend
+- Implementing JWT authentication
 
 ---
 
