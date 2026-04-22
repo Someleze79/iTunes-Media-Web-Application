@@ -14,7 +14,7 @@ const SearchForm = ({ setResults }) => {
     const getToken = async () => {
       try {
         // Request a JWT token from the backend
-        const res = await axios.get('http://localhost:5000/api/token');
+        const res = await axios.get('/api/token');
 
         // Store the token in localStorage for use in API requests
         localStorage.setItem('appToken', res.data.token);
