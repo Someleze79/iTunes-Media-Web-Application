@@ -96,8 +96,8 @@ npm run build
 ---
 
 ## 📈 Future Improvements
-● Add user accounts & persistent favourites
-● Improve UI/UX design
-● Add pagination for search results
-● Implement error handling UI
-● Add loading indicators
+- Add user accounts & persistent favourites
+- Improve UI/UX design
+- Add pagination for search results
+- Implement error handling UI
+- Add loading indicators
